@@ -1,0 +1,469 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'MS Sans Serif', 'Microsoft Sans Serif', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Desktop */
+.desktop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 32px);
+    background: #008080;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    padding: 5px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.desktop-icon:hover {
+    background: rgba(0, 0, 128, 0.3);
+}
+
+.desktop-icon.selected {
+    background: rgba(0, 0, 128, 0.5);
+}
+
+.icon-image {
+    font-size: 32px;
+    margin-bottom: 5px;
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.5));
+}
+
+.icon-label {
+    color: white;
+    font-size: 11px;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+/* Taskbar */
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 32px;
+    background: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 0 2px;
+    z-index: 10000;
+}
+
+.start-button {
+    height: 26px;
+    padding: 0 15px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #000000 #000000 #ffffff;
+    font-weight: bold;
+    font-size: 11px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.start-button:active {
+    border-color: #000000 #ffffff #ffffff #000000;
+}
+
+.start-icon {
+    font-size: 16px;
+}
+
+.taskbar-apps {
+    flex: 1;
+    display: flex;
+    gap: 2px;
+    margin-left: 4px;
+}
+
+.taskbar-app {
+    height: 26px;
+    padding: 0 8px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #000000 #000000 #ffffff;
+    font-size: 11px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    max-width: 150px;
+}
+
+.taskbar-app.active {
+    border-color: #000000 #ffffff #ffffff #000000;
+    background: #a0a0a0;
+}
+
+.taskbar-app:hover:not(.active) {
+    background: #d0d0d0;
+}
+
+.app-icon {
+    font-size: 14px;
+}
+
+.app-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.system-tray {
+    height: 26px;
+    border: 1px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+}
+
+.tray-icon {
+    font-size: 14px;
+}
+
+/* Windows 98 Window Styling */
+.window {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #dfdfdf #808080 #808080 #dfdfdf;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    width: 800px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
+
+.window.minimized {
+    display: none;
+}
+
+.window.maximized {
+    width: 100%;
+    height: calc(100vh - 32px);
+    top: 0;
+    left: 0;
+    transform: none;
+}
+
+.title-bar {
+    background: linear-gradient(to right, #000080, #1084d0);
+    color: white;
+    padding: 3px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.title-bar-text {
+    display: flex;
+    align-items: center;
+}
+
+.title-bar-controls {
+    display: flex;
+    gap: 2px;
+}
+
+.title-bar-controls button {
+    width: 16px;
+    height: 14px;
+    background: #c0c0c0;
+    border: 1px solid;
+    border-color: #ffffff #000000 #000000 #ffffff;
+    font-size: 10px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.title-bar-controls button:active {
+    border-color: #000000 #ffffff #ffffff #000000;
+}
+
+/* Menu Bar */
+.menu-bar {
+    background: #c0c0c0;
+    border-bottom: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    display: flex;
+    padding: 2px;
+    font-size: 11px;
+}
+
+.menu-item {
+    padding: 3px 8px;
+    cursor: pointer;
+    position: relative;
+}
+
+.menu-item:hover {
+    background: #000080;
+    color: white;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #dfdfdf #404040 #404040 #dfdfdf;
+    min-width: 150px;
+    z-index: 1000;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.menu-item:hover .dropdown {
+    display: block;
+}
+
+.menu-option {
+    padding: 4px 20px;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.menu-option:hover {
+    background: #000080;
+    color: white;
+}
+
+.menu-separator {
+    height: 1px;
+    background: #808080;
+    margin: 2px 0;
+}
+
+/* Status Bar */
+.status-bar {
+    background: #c0c0c0;
+    border-top: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    display: flex;
+    padding: 2px;
+    font-size: 11px;
+    gap: 2px;
+}
+
+.status-item {
+    padding: 2px 8px;
+    border: 1px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    flex: 1;
+}
+
+/* Game Container */
+.game-container {
+    flex: 1;
+    background: #00A851;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Card Styling */
+.card {
+    width: 71px;
+    height: 96px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    position: absolute;
+    cursor: pointer;
+    user-select: none;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    transition: transform 0.1s;
+}
+
+.card.draggable:hover:not(.dragging) {
+    transform: translateY(-3px);
+}
+
+.card.dragging {
+    opacity: 0.5;
+    z-index: 1000;
+}
+
+.card.face-down {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71 96"><rect width="71" height="96" fill="%23000080"/><pattern id="pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0 0 L10 10 M10 0 L0 10 M10 10 L20 20 M20 10 L10 20" stroke="%231084d0" stroke-width="1"/></pattern><rect width="71" height="96" fill="url(%23pattern)"/></svg>');
+    background-size: cover;
+}
+
+.card-content {
+    padding: 4px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-rank {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.card-suit {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.card.red {
+    color: #ff0000;
+}
+
+.card.black {
+    color: #000000;
+}
+
+.card-center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
+/* Pile Styling */
+.pile {
+    position: absolute;
+    width: 71px;
+    height: 96px;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+.pile.highlight {
+    border-color: #ffff00;
+    background: rgba(255, 255, 0, 0.2);
+}
+
+/* Stock and Waste piles for Klondike */
+.stock-pile {
+    left: 20px;
+    top: 20px;
+}
+
+.waste-pile {
+    left: 110px;
+    top: 20px;
+}
+
+/* Foundation piles */
+.foundation-pile {
+    top: 20px;
+}
+
+.foundation-pile.f0 { right: 290px; }
+.foundation-pile.f1 { right: 200px; }
+.foundation-pile.f2 { right: 110px; }
+.foundation-pile.f3 { right: 20px; }
+
+/* Tableau piles */
+.tableau-pile {
+    top: 136px;
+}
+
+.tableau-pile.t0 { left: 20px; }
+.tableau-pile.t1 { left: 110px; }
+.tableau-pile.t2 { left: 200px; }
+.tableau-pile.t3 { left: 290px; }
+.tableau-pile.t4 { left: 380px; }
+.tableau-pile.t5 { left: 470px; }
+.tableau-pile.t6 { left: 560px; }
+.tableau-pile.t7 { left: 650px; }
+.tableau-pile.t8 { left: 740px; }
+.tableau-pile.t9 { left: 830px; }
+
+/* FreeCell specific */
+.freecell-pile {
+    top: 20px;
+}
+
+.freecell-pile.fc0 { left: 20px; }
+.freecell-pile.fc1 { left: 110px; }
+.freecell-pile.fc2 { left: 200px; }
+.freecell-pile.fc3 { left: 290px; }
+
+/* Win Animation */
+.win-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+.bouncing-card {
+    position: absolute;
+    width: 71px;
+    height: 96px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Card suits symbols */
+.suit-hearts::after { content: '♥'; }
+.suit-diamonds::after { content: '♦'; }
+.suit-clubs::after { content: '♣'; }
+.suit-spades::after { content: '♠'; }
+
+/* Empty pile indicators */
+.pile::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    opacity: 0.3;
+    color: white;
+}
+
+.foundation-pile.f0::before { content: '♠'; }
+.foundation-pile.f1::before { content: '♥'; }
+.foundation-pile.f2::before { content: '♣'; }
+.foundation-pile.f3::before { content: '♦'; }

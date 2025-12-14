@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 98 - Solitaire</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Desktop Background -->
+    <div class="desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icon" data-app="solitaire">
+            <div class="icon-image">🃏</div>
+            <div class="icon-label">Solitaire</div>
+        </div>
+        <div class="desktop-icon" data-app="win-animation">
+            <div class="icon-image">🎆</div>
+            <div class="icon-label">Win Animation</div>
+        </div>
+        <div class="desktop-icon">
+            <div class="icon-image">💾</div>
+            <div class="icon-label">My Computer</div>
+        </div>
+        <div class="desktop-icon">
+            <div class="icon-image">🗑️</div>
+            <div class="icon-label">Recycle Bin</div>
+        </div>
+        <div class="desktop-icon">
+            <div class="icon-image">📁</div>
+            <div class="icon-label">My Documents</div>
+        </div>
+    </div>
+
+    <!-- Application Window -->
+    <div class="window" id="solitaire-window">
+        <div class="title-bar" id="title-bar">
+            <div class="title-bar-text">Solitaire</div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize" id="minimize-btn">_</button>
+                <button aria-label="Maximize" id="maximize-btn">□</button>
+                <button aria-label="Close" id="close-btn">✕</button>
+            </div>
+        </div>
+        <div class="menu-bar">
+            <div class="menu-item" id="game-menu">
+                Game
+                <div class="dropdown" id="game-dropdown">
+                    <div class="menu-option" data-action="new-game">New Game (F2)</div>
+                    <div class="menu-separator"></div>
+                    <div class="menu-option" data-action="klondike">Klondike</div>
+                    <div class="menu-option" data-action="spider">Spider</div>
+                    <div class="menu-option" data-action="yukon">Yukon</div>
+                    <div class="menu-option" data-action="freecell">FreeCell</div>
+                    <div class="menu-separator"></div>
+                    <div class="menu-option" data-action="statistics">Statistics...</div>
+                    <div class="menu-option" data-action="exit">Exit</div>
+                </div>
+            </div>
+            <div class="menu-item">Help</div>
+        </div>
+        <div class="status-bar">
+            <div class="status-item">
+                <span id="game-type">Yukon</span>
+            </div>
+            <div class="status-item">
+                <span>Score: <span id="score">0</span></span>
+            </div>
+            <div class="status-item">
+                <span>Time: <span id="time">0:00</span></span>
+            </div>
+        </div>
+        <div class="game-container" id="game-container">
+            <!-- Game board will be generated here -->
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <button class="start-button">
+            <span class="start-icon">🪟</span>
+            <span class="start-text">Start</span>
+        </button>
+        <div class="taskbar-apps">
+            <button class="taskbar-app active" data-window="solitaire-window">
+                <span class="app-icon">🃏</span>
+                <span class="app-name">Solitaire</span>
+            </button>
+        </div>
+        <div class="system-tray">
+            <span class="tray-icon">🔊</span>
+            <span class="tray-time" id="tray-time">12:00 PM</span>
+        </div>
+    </div>
+
+    <div class="win-animation" id="win-animation"></div>
+    <script src="desktop.js"></script>
+    <script src="script.js"></script>
+    <script src="klondike.js"></script>
+    <script src="spider.js"></script>
+    <script src="yukon.js"></script>
+    <script src="freecell.js"></script>
+</body>
+</html>
